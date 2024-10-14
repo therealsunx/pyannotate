@@ -1,4 +1,4 @@
 from .winelements import WinElement
-from .window import Window
+from .app import App
 
-__all__ = ['WinElement', 'Window']
+__all__ = ['WinElement', 'App']

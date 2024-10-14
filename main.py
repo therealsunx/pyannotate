@@ -1,8 +1,8 @@
-from scripts import Window
+from scripts import App
 
 def main():
-    window = Window()
-    window.run()
+    app = App()
+    app.run()
 
 if __name__ == "__main__":
     main()
