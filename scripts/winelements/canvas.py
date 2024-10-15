@@ -1,4 +1,7 @@
-from .winelements import *
+from .stack import Stack
+from .text import Text
+from .image import Image
+from .row import Row
 from pygame import Color
 from pygame import mouse
 
@@ -8,7 +11,7 @@ class Canvas(Stack):
             background=None,
             position=(0,0),
             color=Color(20,20,20),
-            flex=1,
+            flex=1.0,
         ):
         Stack.__init__(
                 self,
@@ -25,23 +28,14 @@ class Canvas(Stack):
         if background :
             self.background = Image(src=background)
             childs.append(self.background)
-        self.cursorText = Text(
-                text="x:0, y:0",
-                position=(0,0),
-                fontSize=16,
-                color=Color(0,0,0,0)
-            )
-        childs.append(self.cursorText)
         return childs
     
     def handleEvents(self, events):
         self.updateCursor()
 
     def updateCursor(self):
-        self.cursor = mouse.get_pos()
-        self.cursor = (self.cursor[0]-self.position[0],
-                       self.cursor[1]-self.position[1])
-        self.cursorText.text = f"x:{self.cursor[0]}, y:{self.cursor[1]}"
-        # self.cursorText.position = self.cursor
-        self.cursorText.setPosition((self.cursor[0], self.cursor[1]-16))
+        curs = mouse.get_pos()
+        self.cursor = (curs[0]-self.position[0],
+                       curs[1]-self.position[1])
+
 

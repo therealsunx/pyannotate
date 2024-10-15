@@ -7,7 +7,7 @@ class TopBar(Row):
                 self,
                 children=[
                     Text(text="Q",
-                         fontSize=48,
+                         fontSize=32,
                          bold=True, italic=True,
                          flex=1,
                          color=Color(10,50,60),
@@ -19,7 +19,7 @@ class TopBar(Row):
                             fontColor=Color(200,100,30),
                             bold=True
                         ),
-                    ], padding=(32, 20), flex=15),
+                    ], padding=(32, 12), flex=15),
                     WinElement(flex=4, color=Color(20, 30, 30)),
                 ],
                 name=name,

@@ -1,9 +1,9 @@
 from . import *
+from typing import List
 import pygame as pg
 pg.init()
 
-# WIN_SIZE = (1280, 760)
-WIN_SIZE = (0, 0)
+WIN_SIZE = (1440, 800)
 WIN_NAME = "QuickCrop"
 
 class Window(WinElement):
@@ -13,7 +13,7 @@ class Window(WinElement):
                 name=WIN_NAME,
                 flex=1,
                 position=(0,0),
-                surface=pg.display.set_mode(WIN_SIZE, pg.FULLSCREEN)
+                surface=pg.display.set_mode(WIN_SIZE)
             )
         pg.display.set_caption(self.name)
         self.clock = pg.time.Clock()
@@ -33,11 +33,15 @@ class Window(WinElement):
         self.surface.fill(pg.Color(0,0,0))
         self.child.draw(self.surface)
 
-    def passEvents(self, events):
+    def passEvents(self, events:List[pg.event.Event]):
+        self._processMasterEvents(events)
         self.handleEvents(events)
         self.child.passEvents(events)
 
-    def handleEvents(self, events):
+    def handleEvents(self, events:List[pg.event.Event]):
+        pass
+
+    def _processMasterEvents(self, events:List[pg.event.Event]):
         for event in events:
             if event.type == pg.QUIT:
                 self.shouldExit = True

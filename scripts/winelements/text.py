@@ -24,7 +24,7 @@ class Text(WinElement):
             color=pg.Color(0,0,0,0),
             fontColor=pg.Color(255,255,255),
             name="TEXT",
-            flex=1,
+            flex=1.0,
             position=(0,0),
             padding=(0,0),
             surface=None

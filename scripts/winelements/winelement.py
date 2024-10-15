@@ -1,10 +1,11 @@
+from typing import List
 import pygame
 
 class WinElement:
     def __init__(
             self,
             name="Window element",
-            flex=1,
+            flex=1.0,
             color=pygame.Color(0,0,0,0),
             position=(0,0),
             surface=None,
@@ -31,10 +32,10 @@ class WinElement:
         if not self.surface: self.surface = pygame.Surface(self.size, pygame.SRCALPHA)
         self.surface.fill(self.color)
 
-    def passEvents(self, events):
+    def passEvents(self, events:List[pygame.event.Event]):
         self.handleEvents(events)
 
-    def handleEvents(self, events):
+    def handleEvents(self, events:List[pygame.event.Event]):
         pass
 
     def setPosition(self, position):
@@ -55,4 +56,7 @@ class WinElement:
         self.render()
         if not self.surface: return
         window.blit(self.surface, self.offset)
+
+    def setColor(self, color:pygame.Color):
+        self.color = color
 

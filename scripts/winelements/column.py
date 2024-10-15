@@ -5,7 +5,7 @@ class Column(WinElement):
             self,
             children,
             name="COLUMN",
-            flex=1,
+            flex=1.0,
             padding=(0,0),
             gap=0,
             color=pygame.Color(0,0,0,0),
@@ -27,6 +27,7 @@ class Column(WinElement):
         total = 0
         for c in self.children:
             total += c.flex
+        total = max(1, total)
 
         _childcount = len(self.children)
         if _childcount == 1: self.gap=0

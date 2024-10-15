@@ -6,7 +6,7 @@ class Stack(WinElement):
             self,
             children,
             name="STACK",
-            flex=1,
+            flex=1.0,
             padding=(0,0),
             color=Color(0,0,0,0),
             position=(0,0),
@@ -28,8 +28,7 @@ class Stack(WinElement):
         if not recalc: return
         
         for c in self.children:
-            # cpos = (self.position[0]+c.position[0], self.position[1]+c.position[1])
-            c.updatePose(self.position, self.size, c.position, recalc)
+            c.updatePose(self.position, self.size, c.offset, recalc)
 
     def render(self):
         if not self.surface:

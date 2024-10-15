@@ -6,7 +6,7 @@ class Image(WinElement):
             self,
             src,
             name="Image",
-            flex=1,
+            flex=1.0,
             color=pg.Color(0,0,0,0),
             position=(0,0),
             surface=None
