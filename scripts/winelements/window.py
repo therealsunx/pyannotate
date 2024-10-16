@@ -26,7 +26,7 @@ class Window(WinElement):
                 32,
                 (self.size[1]-titlesz)//2
             )
-        return Text(text="Py-UI", fontSize=64, position=pos)
+        return Text("Py-UI", fontSize=64, position=pos)
 
     def render(self):
         if not self.surface: return

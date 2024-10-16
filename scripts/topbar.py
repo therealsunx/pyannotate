@@ -6,7 +6,7 @@ class TopBar(Row):
         Row.__init__(
                 self,
                 children=[
-                    Text(text="Q",
+                    Text("Q",
                          fontSize=32,
                          bold=True, italic=True,
                          flex=1,
@@ -15,7 +15,7 @@ class TopBar(Row):
                     ),
                     Row([
                         Text(
-                            text="QuickCrop",
+                            "QuickCrop",
                             fontColor=Color(200,100,30),
                             bold=True
                         ),

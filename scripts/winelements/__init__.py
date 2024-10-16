@@ -7,10 +7,11 @@ from .stack import Stack
 from .window import Window
 from .canvas import Canvas
 from .button import Button
+from .input import Input
 
 from pygame import Color
 from pygame import mouse
 
 __all__ = ['WinElement', 'Row', 'Column', 'Text',
-           'Image', 'Stack', 'Window', 'Canvas',
+           'Image', 'Stack', 'Window', 'Canvas', 'Input',
            'Button', 'Color', 'mouse']

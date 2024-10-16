@@ -11,10 +11,10 @@ class DebugInfo(Column):
             )
 
     def initChilds(self):
-        self.cursorInfo = Text(text="x:0, y:0", fontSize=16)
+        self.cursorInfo = Text(value="x:0, y:0", fontSize=16)
         return [
                 self.cursorInfo,
             ]
 
     def updateDebugInfo(self, cursor):
-        self.cursorInfo.text = f"x:{cursor[0]}, y:{cursor[1]}"
+        self.cursorInfo.value = f"x:{cursor[0]}, y:{cursor[1]}"

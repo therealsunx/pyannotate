@@ -16,9 +16,9 @@ class Text(WinElement):
 
     def __init__(
             self,
-            text,
+            value,
             fontFamily="Mono",
-            fontSize=32,
+            fontSize=16,
             bold=False,
             italic=False,
             color=pg.Color(0,0,0,0),
@@ -30,7 +30,7 @@ class Text(WinElement):
             surface=None
         ):
         WinElement.__init__(self, name, flex, color, position, surface)
-        self.text = text
+        self.value = value
         self.fontFamily = fontFamily
         self.fontSize = fontSize
         self.fontColor = fontColor
@@ -40,10 +40,9 @@ class Text(WinElement):
 
     def render(self):
         font = Text.getFont(self.fontFamily, self.fontSize, self.bold, self.italic)
-        text = font.render(self.text, True, self.fontColor)
-        self.size = text.get_size()
+        text = font.render(self.value, True, self.fontColor)
 
-        self.size = (self.size[0]+self.padding[0]*2, self.size[1]+self.padding[1]*2)
+        self.size = (self.size[0], text.get_height()+self.padding[1]*2)
         self.surface = pg.Surface(self.size, pg.SRCALPHA)
 
         self.surface.fill(self.color)

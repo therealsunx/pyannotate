@@ -27,11 +27,12 @@ class Column(WinElement):
         total = 0
         for c in self.children:
             total += c.flex
-        total = max(1, total)
+        total = max(1.0, total)
 
+        gap = self.gap
         _childcount = len(self.children)
-        if _childcount == 1: self.gap=0
-        _gpfact = (_childcount-1)*self.gap
+        if _childcount == 1: gap=0
+        _gpfact = (_childcount-1)*gap
         _tsize = (self.size[0]-self.padding[0]*2,
                   self.size[1]-self.padding[1]*2-_gpfact)
         _gpfact = 0 if _childcount<=1 else _gpfact/(_childcount-1)
@@ -41,7 +42,7 @@ class Column(WinElement):
         for c in self.children:
             _sz = (_tsize[0], c.flex/total*_tsize[1])
             c.updatePose(self.position, _sz, _pos, recalc)
-            _pos = (_pos[0], _pos[1]+_sz[1]+self.gap)
+            _pos = (_pos[0], _pos[1]+_sz[1]+gap)
     
     def render(self):
         if not self.surface:
