@@ -28,6 +28,12 @@ class WinElement:
         self.offset = offset
         self.size = size
 
+    def draw(self, window:pygame.Surface, highlight=False):
+        self.render()
+        if not self.surface: return
+        window.blit(self.surface, self.offset)
+        if highlight: pygame.draw.rect(window, (255,255,255), (*self.offset, *self.size), width=1)
+
     def render(self):
         if not self.surface: self.surface = pygame.Surface(self.size, pygame.SRCALPHA)
         self.surface.fill(self.color)
@@ -51,11 +57,6 @@ class WinElement:
                 self.position[1]-self.offset[1]+offset[1],
             )
         self.offset = offset
-
-    def draw(self, window:pygame.Surface):
-        self.render()
-        if not self.surface: return
-        window.blit(self.surface, self.offset)
 
     def setColor(self, color:pygame.Color):
         self.color = color

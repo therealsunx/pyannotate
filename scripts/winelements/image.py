@@ -7,7 +7,7 @@ class Image(WinElement):
             src,
             name="Image",
             flex=1.0,
-            color=pg.Color(0,0,0,0),
+            color=pg.Color(0,0,0),
             position=(0,0),
             surface=None
         ):
@@ -15,11 +15,13 @@ class Image(WinElement):
         self.src = src
         self.scale = 1
 
-    def render(self):
-        if not self.surface:
-            self.surface = pg.Surface(self.size, pg.SRCALPHA)
-            self.surface.convert_alpha()
-        self.img = pg.image.load(self.src).convert_alpha()
+    def setImage(self, src):
+        self.src = src
+        if self.src: self._renderImg(self.src)
+        else: self.surface.fill(self.color)
+
+    def _renderImg(self, src):
+        self.img = pg.image.load(src).convert_alpha()
         org_size = self.img.get_size()
 
         if org_size[0]>org_size[1]:
@@ -29,3 +31,11 @@ class Image(WinElement):
         
         self.img = pg.transform.smoothscale_by(self.img, self.scale)
         self.surface.blit(self.img, (0,0))
+
+    def render(self):
+        if self.surface: return
+
+        self.surface = pg.Surface(self.size, pg.SRCALPHA)
+        self.surface.convert_alpha()
+        self.setImage(self.src)
+

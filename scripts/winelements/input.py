@@ -61,7 +61,6 @@ class Input(Text):
                 else:
                     self.value += e.unicode
             
-
     def render(self):
         font = Text.getFont(self.fontFamily, self.fontSize, self.bold, self.italic)
         value = font.render(self.value + ('|' if self.focused else ''), True, self.fontColor)

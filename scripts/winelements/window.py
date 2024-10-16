@@ -37,8 +37,12 @@ class Window(WinElement):
         self._processMasterEvents(events)
         self.handleEvents(events)
         self.child.passEvents(events)
+        self.handleLateEvents(events)
 
     def handleEvents(self, events:List[pg.event.Event]):
+        pass
+
+    def handleLateEvents(self, events:List[pg.event.Event]):
         pass
 
     def _processMasterEvents(self, events:List[pg.event.Event]):

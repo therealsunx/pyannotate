@@ -52,3 +52,4 @@ class Text(WinElement):
         self.position = (parentPos[0]+offset[0], parentPos[1]+offset[1])
         self.offset = offset
         self.size = size
+

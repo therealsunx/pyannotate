@@ -8,10 +8,11 @@ from .window import Window
 from .canvas import Canvas
 from .button import Button
 from .input import Input
+from .gizmo import Gizmo
 
 from pygame import Color
 from pygame import mouse
 
-__all__ = ['WinElement', 'Row', 'Column', 'Text',
+__all__ = ['WinElement', 'Row', 'Column', 'Text', 'Gizmo',
            'Image', 'Stack', 'Window', 'Canvas', 'Input',
            'Button', 'Color', 'mouse']

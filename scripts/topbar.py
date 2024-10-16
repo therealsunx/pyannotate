@@ -17,7 +17,8 @@ class TopBar(Row):
                         Text(
                             "QuickCrop",
                             fontColor=Color(200,100,30),
-                            bold=True
+                            bold=True,
+                            fontSize=24
                         ),
                     ], padding=(32, 12), flex=15),
                     WinElement(flex=4, color=Color(20, 30, 30)),
