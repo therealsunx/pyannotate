@@ -14,6 +14,7 @@ class Input(Text):
             color=Color(0,0,0,0),
             fontColor=Color(255,255,255),
             name="INPUT",
+            id = 0,
             flex=1.0,
             position=(0,0),
             padding=(0,0),
@@ -31,6 +32,7 @@ class Input(Text):
                 name=name,
                 flex=flex,
                 position=position,
+                id=id,
                 padding=padding,
                 surface=None
             )

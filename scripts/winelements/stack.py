@@ -6,6 +6,7 @@ class Stack(WinElement):
             self,
             children,
             name="STACK",
+            id = 0,
             flex=1.0,
             padding=(0,0),
             color=Color(0,0,0,0),
@@ -16,7 +17,8 @@ class Stack(WinElement):
                 self,
                 name, flex, color,
                 position=position,
-                surface=surface
+                surface=surface,
+                id=id
             )
         self.padding = padding
         self.children = children

@@ -6,13 +6,14 @@ class Column(WinElement):
             children,
             name="COLUMN",
             flex=1.0,
+            id = 0,
             padding=(0,0),
             gap=0,
             color=pygame.Color(0,0,0,0),
             position=(0,0),
             surface=None,
         ):
-        WinElement.__init__(self, name, flex, color, position, surface)
+        WinElement.__init__(self, name, flex, color, position, id=id, surface=surface)
         self.children = children
         self.padding = padding
         self.gap=gap

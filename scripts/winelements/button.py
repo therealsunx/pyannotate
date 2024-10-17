@@ -6,9 +6,11 @@ class Button(WinElement):
     def __init__(
             self,
             child,
+            id=0,
+            flex=1,
             onClick=None,
         ):
-        WinElement.__init__(self, name="Button")
+        WinElement.__init__(self, name="Button", id=id, flex=flex)
         self.child = child
         self.onClick = onClick
         self.clicked = False
@@ -34,7 +36,7 @@ class Button(WinElement):
         for e in events:
             if e.type == MOUSEBUTTONDOWN:
                 self.clicked = True
-                if self.onClick: self.onClick(self.child)
+                if self.onClick: self.onClick(self)
                 break
             if e.type == MOUSEBUTTONUP:
                 self.clicked = False

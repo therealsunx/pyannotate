@@ -14,6 +14,7 @@ class Canvas(Stack):
             background=None,
             position=(0,0),
             color=Color(20,20,20),
+            id = 0,
             flex=1.0,
             onSelect = None
         ):
@@ -21,6 +22,7 @@ class Canvas(Stack):
                 self,
                 children=self.createChilds(background),
                 name="Canvas",
+                id = id,
                 flex=flex,
                 position=position,
                 color=color

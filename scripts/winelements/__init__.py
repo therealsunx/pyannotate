@@ -9,10 +9,11 @@ from .canvas import Canvas
 from .button import Button
 from .input import Input
 from .gizmo import Gizmo
+from .list import List
 
 from pygame import Color
 from pygame import mouse
 
 __all__ = ['WinElement', 'Row', 'Column', 'Text', 'Gizmo',
            'Image', 'Stack', 'Window', 'Canvas', 'Input',
-           'Button', 'Color', 'mouse']
+           'Button', 'List', 'Color', 'mouse']

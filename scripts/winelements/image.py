@@ -6,12 +6,13 @@ class Image(WinElement):
             self,
             src,
             name="Image",
+            id = 0,
             flex=1.0,
             color=pg.Color(0,0,0),
             position=(0,0),
             surface=None
         ):
-        WinElement.__init__(self, name, flex, color, position, surface)
+        WinElement.__init__(self, name, flex, color, position, id, surface)
         self.src = src
         self.scale = 1
 

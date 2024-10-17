@@ -8,6 +8,7 @@ class WinElement:
             flex=1.0,
             color=pygame.Color(0,0,0,0),
             position=(0,0),
+            id = 0,
             surface=None,
         ):
         self.flex = flex
@@ -15,6 +16,7 @@ class WinElement:
         self.position = position
         self.offset = (0,0)
         self.color = color
+        self.id = id
 
         if not surface:
             self.size = (0,0)
