@@ -3,16 +3,20 @@ from .topbar import TopBar
 from .debug import DebugInfo
 from .strdcanvas import StrdCanvas
 
-import glob
-from pygame import KEYDOWN, SRCALPHA
+import glob, sys
+from pygame import KEYDOWN
 from pygame import image as pyimage
 from pathlib import Path
 
 class App(Window):
     def __init__(self):
-        self.imgs = glob.glob("rawimg/*.jpg")
+        dir = sys.argv[1] if len(sys.argv)>1 else "./"
+        if dir[-1] != '/': dir = dir+"/"
+        fmts = ["png", "jpg", "jpeg"]
+        self.imgs = []
+        for fmt in fmts:
+            self.imgs = self.imgs+glob.glob(f"{dir}*.{fmt}")
         self.curInd = 0
-        print(self.imgs)
 
         Window.__init__(self)
 
