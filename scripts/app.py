@@ -92,9 +92,12 @@ class App(Window):
             ], color=Color(10,10,10), flex=3)
 
         return Column([
-                TopBar(),
+            TopBar(onExitClick = self.exitClick),
                 Row([self.canvas, self.sidebar],flex=15, gap=4)
             ],padding=(4,4),gap=4)
+
+    def exitClick(self):
+        self.shouldExit = True
 
     def handleLateEvents(self, events):
         self.debugger.updateDebugInfo(
