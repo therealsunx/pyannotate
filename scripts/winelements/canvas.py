@@ -1,7 +1,5 @@
 from .stack import Stack
-from .text import Text
 from .image import Image
-from .row import Row
 from .gizmo import Gizmo
 
 from pygame import Color, Surface

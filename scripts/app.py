@@ -4,7 +4,9 @@ from .debug import DebugInfo
 from .strdcanvas import StrdCanvas
 
 import glob
-from pygame import KEYDOWN
+from pygame import KEYDOWN, SRCALPHA
+from pygame import image as pyimage
+from pathlib import Path
 
 class App(Window):
     def __init__(self):
@@ -22,23 +24,37 @@ class App(Window):
             )
         self.debugger = DebugInfo(flex=2)
 
-        self.rectList = List([], flex=9, padding=(4,4), gap=2)
+        self.rectList = List([], flex=8, padding=(4,4), gap=2)
 
-        self.curDirText = Text("", padding=(0,4), color=Color(10,10,10), flex=2)
-        adddirbtn = Column([
+        self.curDirText = Text("proc_imgs", padding=(4,4), color=Color(10,10,10), flex=2)
+        self.namePrefText = Text("img", padding=(4,4), color=Color(10,10,10), flex=2)
+ 
+        f_info = Column([
             Row([
-                Text("Set Dir", padding=(0,4)),
+                Text("Set NamePrefix", padding=(0,6)),
                 Input(
-                    padding=(8,4), flex=5,
+                    padding=(8,4), flex=4,
+                    color=Color(10,10,10,200),
+                    onSubmit=self.setNamePrefix
+                ),
+            ], padding=(4,4), gap=4),
+            Row([
+                Text("NamePrefix", padding=(4,4)),
+                self.namePrefText
+            ]),
+            Row([
+                Text("Set Dir", padding=(0,6)),
+                Input(
+                    padding=(8,4), flex=4,
                     color=Color(10,10,10,200),
                     onSubmit=self.setCurDir
                 ),
             ], padding=(4,4), gap=4),
             Row([
-                Text("Current Dir"),
+                Text("Current Dir", padding=(4,4)),
                 self.curDirText
             ])
-        ], flex=1, gap=4)
+        ], flex=3, gap=4)
         hairline = WinElement(flex=0.04, color=Color(255,255,255))
         submitbtn = Button(Text(
                             "Submit",
@@ -63,7 +79,7 @@ class App(Window):
                 self.debugger,
                 hairline,
                 Column([
-                    adddirbtn,
+                    f_info,
                     self.rectList
                 ], flex=17, padding=(4,4), color=Color(20,30,60)),
                 hairline,
@@ -112,7 +128,19 @@ class App(Window):
     
     def setCurDir(self, dir):
         self.curDirText.value = dir
+
+    def setNamePrefix(self, prefix):
+        self.namePrefText.value = prefix
     
-    def onSubmit(self): # TODO
-        print("Submitted")
+    def onSubmit(self): 
+        for i,gizmo in enumerate(self.canvas.gizmochilds):
+            self.saveRect(gizmo, name=f"{self.namePrefText.value}{i}")
+        self.canvas.clearGizmos()
+        self.rectList.clear()
+    
+    def saveRect(self, gizmo, name="img01"):
+        sf = self.canvas.getChunkFromGizmo(gizmo)
+        if not sf: return
+        Path(self.curDirText.value).mkdir(parents=True, exist_ok=True)
+        pyimage.save(sf, f"{self.curDirText.value}/{name}.png")
 

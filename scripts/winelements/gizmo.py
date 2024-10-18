@@ -10,6 +10,7 @@ class Gizmo():
         ):
         self.position = position
         self.size=size
+        self.rect = (*self.position, *self.size)
         self.borderColor = borderColor
         self.borderWidth = borderWidth
 
@@ -28,13 +29,15 @@ class Gizmo():
 
         self.position = (x,y)
         self.size = (w,h)
+        self.rect = (*self.position, *self.size)
     
     def setStartPoint(self, pos):
         self.selStart = pos
         self.position = pos
         self.size = (0,0)
+        self.rect = (*self.position, *self.size)
 
     def draw(self, window):
-        draw.rect(window, self.borderColor, (*self.position, *self.size), width=self.borderWidth)
+        draw.rect(window, self.borderColor, self.rect, width=self.borderWidth)
 
 

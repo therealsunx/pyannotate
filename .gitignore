@@ -1,3 +1,5 @@
 rawimg/
+proc_imgs/
+
 __pycache__/
 *.py[cod]

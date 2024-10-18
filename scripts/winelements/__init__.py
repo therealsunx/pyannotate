@@ -12,8 +12,8 @@ from .gizmo import Gizmo
 from .list import List
 
 from pygame import Color
-from pygame import mouse
+from pygame import mouse, Surface
 
 __all__ = ['WinElement', 'Row', 'Column', 'Text', 'Gizmo',
            'Image', 'Stack', 'Window', 'Canvas', 'Input',
-           'Button', 'List', 'Color', 'mouse']
+           'Button', 'List', 'Color', 'mouse', 'Surface']

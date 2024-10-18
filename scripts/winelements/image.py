@@ -22,15 +22,15 @@ class Image(WinElement):
         else: self.surface.fill(self.color)
 
     def _renderImg(self, src):
-        self.img = pg.image.load(src).convert_alpha()
-        org_size = self.img.get_size()
+        self.org_image = pg.image.load(src).convert_alpha()
+        org_size = self.org_image.get_size()
 
         if org_size[0]>org_size[1]:
             self.scale = self.size[0]/org_size[0]
         else:
             self.scale = self.size[1]/org_size[1]
         
-        self.img = pg.transform.smoothscale_by(self.img, self.scale)
+        self.img = pg.transform.smoothscale_by(self.org_image, self.scale)
         self.surface.blit(self.img, (0,0))
 
     def render(self):

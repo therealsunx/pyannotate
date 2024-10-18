@@ -1,6 +1,7 @@
 # canvas on steroids
 
-from .winelements import Canvas, Color, Gizmo
+from .winelements import Canvas, Color, Surface, Gizmo
+from pygame import SRCALPHA
 
 class StrdCanvas(Canvas):
     def __init__(
@@ -37,4 +38,12 @@ class StrdCanvas(Canvas):
 
     def clearGizmos(self):
         self.gizmochilds.clear()
+    
+    def getChunkFromGizmo(self, gizmo:Gizmo):
+        if not self.background.src: return None
+        rct = [c/self.background.scale for c in gizmo.rect]
+        rct = tuple(rct)
+        srf = Surface(rct[2:], SRCALPHA)
+        srf.blit(self.background.org_image, (0,0), rct)
+        return srf
             
