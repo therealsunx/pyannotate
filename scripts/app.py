@@ -17,6 +17,7 @@ class App(Window):
         for fmt in fmts:
             self.imgs = self.imgs+glob.glob(f"{dir}*.{fmt}")
         self.curInd = 0
+        self.charIDs = {}
 
         Window.__init__(self)
 
@@ -123,7 +124,7 @@ class App(Window):
     def nextImg(self, dir=1):
         nc = self.curInd+dir
         if nc < 0: return
-        if nc > len(self.imgs): return
+        if nc > len(self.imgs): nc = 0
         self.curInd = nc
         self.canvas.background.setImage(self.currentImage())
         self.canvas.clearGizmos()
@@ -148,6 +149,13 @@ class App(Window):
     def saveRect(self, gizmo, name="img01"):
         sf = self.canvas.getChunkFromGizmo(gizmo)
         if not sf: return
-        Path(self.curDirText.value).mkdir(parents=True, exist_ok=True)
-        pyimage.save(sf, f"{self.curDirText.value}/{name}.png")
+
+        if self.charIDs.get(name):
+            self.charIDs[name]+=1;
+        else:
+            self.charIDs[name] = 1;
+        curID = self.charIDs[name]
+        cdir = f"{self.curDirText.value}/{name}"
+        Path(cdir).mkdir(parents=True, exist_ok=True)
+        pyimage.save(sf, f"{cdir}/{curID}.png")
 

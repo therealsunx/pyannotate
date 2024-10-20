@@ -3,7 +3,7 @@ from typing import List
 import pygame as pg
 pg.init()
 
-WIN_SIZE = (1440, 800)
+WIN_SIZE = (1536, 864)
 WIN_NAME = "QuickCrop"
 
 class Window(WinElement):
@@ -13,7 +13,7 @@ class Window(WinElement):
                 name=WIN_NAME,
                 flex=1,
                 position=(0,0),
-                surface=pg.display.set_mode(WIN_SIZE)
+                surface=pg.display.set_mode((0,0), pg.FULLSCREEN)
             )
         pg.display.set_caption(self.name)
         self.clock = pg.time.Clock()
