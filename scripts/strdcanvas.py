@@ -35,6 +35,9 @@ class StrdCanvas(Canvas):
         l = len(self.gizmochilds)
         if l == 0 or l <= index: return
         self.gizmochilds.pop(index)
+    
+    def invalidateGizmo(self):
+        self.gizmochilds[-1].invalidflag = True
 
     def clearGizmos(self):
         self.gizmochilds.clear()

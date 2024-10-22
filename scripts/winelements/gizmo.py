@@ -13,6 +13,7 @@ class Gizmo():
         self.rect = (*self.position, *self.size)
         self.borderColor = borderColor
         self.borderWidth = borderWidth
+        self.invalidflag = False
 
         self.selStart = (0,0)
 
@@ -38,6 +39,7 @@ class Gizmo():
         self.rect = (*self.position, *self.size)
 
     def draw(self, window):
-        draw.rect(window, self.borderColor, self.rect, width=self.borderWidth)
+        color = (200,0,0) if self.invalidflag else self.borderColor
+        draw.rect(window, color, self.rect, width=self.borderWidth)
 
 

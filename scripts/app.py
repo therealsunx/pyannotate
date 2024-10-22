@@ -4,7 +4,7 @@ from .debug import DebugInfo
 from .strdcanvas import StrdCanvas
 
 import glob, sys
-from pygame import KEYDOWN
+from pygame import KEYDOWN, K_ESCAPE, K_BACKSPACE
 from pygame import image as pyimage
 from pathlib import Path
 
@@ -111,9 +111,13 @@ class App(Window):
             )
         
         for e in events:
-            if e.type == KEYDOWN and e.unicode == '\b':
-                self.canvas.popGizmoChild()
-                self.rectList.popChild()
+            if e.type == KEYDOWN:
+                if e.key == K_BACKSPACE:
+                    self.canvas.popGizmoChild()
+                    self.rectList.popChild()
+                elif e.key == K_ESCAPE:
+                    self.canvas.invalidateGizmo()
+
 
     def onSelectCanvas(self, rect):
         if rect[2]<10 or rect[2]<10: return
@@ -141,7 +145,9 @@ class App(Window):
         self.namePrefText.value = prefix
     
     def onSubmit(self): 
+        self.canvas.gizmochilds.sort(key=lambda x:x.position[0])
         for i,gizmo in enumerate(self.canvas.gizmochilds):
+            if gizmo.invalidflag: continue
             self.saveRect(gizmo, name=f"{self.namePrefText.value}{i}")
         self.canvas.clearGizmos()
         self.rectList.clear()
